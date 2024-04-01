@@ -23,6 +23,8 @@ Copyright 2024 Sprocket real-time scheduler Development Team
 #define JITTERSTATISTICS_H_
 #include "Constants.h"
 
+namespace sprocketRealtimeScheduler {
+
 // Jitter data for a single frame.
 struct FrameJitterEntry {
      // Base period time.
@@ -100,5 +102,7 @@ struct JitterStatistics {
     // The best start jitter time to date.
     double best_start_jitter_;
 };
+
+} // sprocketRealtimeScheduler
 
 #endif  // JITTERSTATISTICS_H_

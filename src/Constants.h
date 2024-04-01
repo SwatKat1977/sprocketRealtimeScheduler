@@ -40,6 +40,10 @@ Copyright 2024 Sprocket real-time scheduler Development Team
 using DWORD = unsigned int;
 #endif
 
+namespace sprocketRealtimeScheduler {
+
 const int MAX_FRAMES = 32;
+
+} // sprocketRealtimeScheduler
 
 #endif  // CONSTANTS_H_
