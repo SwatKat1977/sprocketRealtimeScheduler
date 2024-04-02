@@ -44,6 +44,6 @@ namespace sprocketRealtimeScheduler {
 
 const int MAX_FRAMES = 32;
 
-} // sprocketRealtimeScheduler
+}   // sprocketRealtimeScheduler
 
 #endif  // CONSTANTS_H_

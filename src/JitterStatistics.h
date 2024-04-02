@@ -43,6 +43,16 @@ struct FrameJitterEntry {
     double late_;
 };
 
+struct FrameJitterEntryData {
+    FrameJitterEntry data_;
+
+    // The best start time.
+    double best_start_time_;
+
+    // The worst start time.
+    double  worst_start_time_;
+};
+
 // Data structure for thread start time jitter.
 struct ThreadStartTimeJitterData {
     // The current start time.
@@ -64,8 +74,17 @@ struct ThreadStartTimeJitterData {
     unsigned int total_passes_run_;
 };
 
-struct JitterStatistics {
+struct ThreadStartTimeJitterEntryData {
+    ThreadStartTimeJitterData data_;
 
+    // The worst start jitter time to date.
+    double worst_start_jitter_;
+
+    // The best start jitter time to date.
+    double best_start_jitter_;
+};
+
+struct JitterStatistics {
     // ===========================
     // = Frame Jitter Statistics =
     // ===========================
@@ -103,6 +122,6 @@ struct JitterStatistics {
     double best_start_jitter_;
 };
 
-} // sprocketRealtimeScheduler
+}   // namespace sprocketRealtimeScheduler
 
 #endif  // JITTERSTATISTICS_H_
