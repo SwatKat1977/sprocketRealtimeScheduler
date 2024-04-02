@@ -50,8 +50,6 @@ void ThreadCondition::Notify() {
     condition_.notify_one();
 }
 
-//------------------------------------------------------------------------------
-
 std::cv_status ThreadCondition::WaitFor(const timeout_msecs &timeout) {
     auto result = std::cv_status::no_timeout;
 
