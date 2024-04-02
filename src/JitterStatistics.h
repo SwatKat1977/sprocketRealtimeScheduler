@@ -33,8 +33,8 @@ struct FrameJitterEntry {
     // The average jitter value;
     double average_jitter_;
 
-    // The absolute jitter value.
-    double absolute_jitter_;
+    // The current jitter value.
+    double current_jitter_;
 
     // The early jitter value
     double early_;
