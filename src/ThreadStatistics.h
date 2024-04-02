@@ -25,6 +25,33 @@ Copyright 2024 Sprocket real-time scheduler Development Team
 
 namespace sprocketRealtimeScheduler {
 
+// Timing data for a single frame.
+struct FrameTimingEntry {
+    // Current frame time.
+    double current_time_;
+
+    // Average frame time.
+    double average_time_;
+
+    // Best frame time.
+    double best_time_;
+
+    // worst frame time.
+    double worst_time_;
+
+    // Total accumulated frame times.
+    double total_time_;
+
+    // Total count of frames run.
+    unsigned int total_frames_run_;
+};
+
+struct FrameTimingDataEntry {
+    FrameTimingEntry data_;
+    double worst_frame_time_;
+    double best_frame_time_;
+};
+
 // Jitter data for a single frame.
 struct FrameJitterEntry {
      // Base period time.
@@ -45,11 +72,7 @@ struct FrameJitterEntry {
 
 struct FrameJitterEntryData {
     FrameJitterEntry data_;
-
-    // The best start time.
     double best_start_time_;
-
-    // The worst start time.
     double  worst_start_time_;
 };
 
@@ -76,15 +99,22 @@ struct ThreadStartTimeJitterData {
 
 struct ThreadStartTimeJitterEntryData {
     ThreadStartTimeJitterData data_;
-
-    // The worst start jitter time to date.
     double worst_start_jitter_;
-
-    // The best start jitter time to date.
     double best_start_jitter_;
 };
 
 struct ThreadStatistics {
+    // ===========================
+    // = Frame Timing Statistics =
+    // ===========================
+    FrameTimingEntry m_Frame[MAX_FRAMES];
+
+    // The worst frame time to date.
+    double worst_frame_time_;
+
+    // The best frame time to date.
+    double best_frame_time_;
+
     // ===========================
     // = Frame Jitter Statistics =
     // ===========================
