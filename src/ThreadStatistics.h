@@ -19,8 +19,8 @@ Copyright 2024 Sprocket real-time scheduler Development Team
     along with this program.If not, see < https://www.gnu.org/licenses/>.
 -----------------------------------------------------------------------------
 */
-#ifndef JITTERSTATISTICS_H_
-#define JITTERSTATISTICS_H_
+#ifndef THREADSTATISTICS_H_
+#define THREADSTATISTICS_H_
 #include "Constants.h"
 
 namespace sprocketRealtimeScheduler {
@@ -84,7 +84,7 @@ struct ThreadStartTimeJitterEntryData {
     double best_start_jitter_;
 };
 
-struct JitterStatistics {
+struct ThreadStatistics {
     // ===========================
     // = Frame Jitter Statistics =
     // ===========================
@@ -124,4 +124,4 @@ struct JitterStatistics {
 
 }   // namespace sprocketRealtimeScheduler
 
-#endif  // JITTERSTATISTICS_H_
+#endif  // THREADSTATISTICS_H_
