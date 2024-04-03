@@ -107,7 +107,7 @@ struct ThreadStatistics {
     // ===========================
     // = Frame Timing Statistics =
     // ===========================
-    FrameTimingEntry m_Frame[MAX_FRAMES];
+    FrameTimingEntry Frame_data[MAX_FRAMES];
 
     // The worst frame time to date.
     double worst_frame_time_;
@@ -118,7 +118,7 @@ struct ThreadStatistics {
     // ===========================
     // = Frame Jitter Statistics =
     // ===========================
-    FrameJitterEntry jitter_entries_[MAX_FRAMES];
+    FrameJitterEntry jitter_data_[MAX_FRAMES];
 
     // The worst (latest) jitter of any frame to date.
     double worst_frame_jitter_;

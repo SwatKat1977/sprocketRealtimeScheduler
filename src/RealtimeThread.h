@@ -28,18 +28,18 @@ Copyright 2024 Sprocket real-time scheduler Development Team
 
 namespace sprocketRealtimeScheduler {
 
-class Realtimethread : public std::thread {
+class RealtimeThread : public std::thread {
  public:
-    Realtimethread();
+    RealtimeThread();
 
-    virtual ~Realtimethread() = default;
+    ~RealtimeThread() = default;
 
     // Thread condition to start the thread kill, it hasn't died until
     // thread_dead_condition_ has been set.
-    ThreadCondition kill_thread_condition_;
+    ThreadCondition kill_thread_;
 
     // Thread condition to identify when the thread has been killed.
-    ThreadCondition thread_dead_condition_;
+    ThreadCondition thread_dead_;
 
     void StartThread();
     void KillThread();
@@ -63,7 +63,7 @@ class Realtimethread : public std::thread {
     DWORD CurrentFrame();
 
  protected:
-    ThreadStatistics jitter_statistics_;
+    ThreadStatistics statistics_;
     double cpu_ticks_per_second_;
     DWORD current_frame_;
     DWORD frame_mask_;
