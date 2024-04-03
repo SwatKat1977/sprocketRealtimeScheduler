@@ -32,8 +32,6 @@ class RealtimeThread : public std::thread {
  public:
     RealtimeThread();
 
-    ~RealtimeThread() = default;
-
     // Thread condition to start the thread kill, it hasn't died until
     // thread_dead_condition_ has been set.
     ThreadCondition kill_thread_;
@@ -71,13 +69,15 @@ class RealtimeThread : public std::thread {
     double supervior_thread_stop_time_;
     double wanted_frame_period_seconds_;
 
+    ~RealtimeThread() = default;
+
     double SnapshotTimestamp();
     double CalculateFrameJitter(int frame);
     void CalculateFrameTimings(int current_frame, double frame_start,
                                double frame_end);
     void CalculateTheadStartJitter(int current_frame);
 
-    virtual double ThreadLoop();
+    virtual double ThreadLoop() = 0;
 };
 
 }   // namespace sprocketRealtimeScheduler
