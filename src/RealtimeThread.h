@@ -54,7 +54,7 @@ class RealtimeThread : public std::thread {
     void ZeroThreadStartJitter();
 
     FrameTimingDataEntry GetTimingData(DWORD frame_no);
-    FrameJitterEntryData GetJitterStatistics(DWORD frame_no);
+    FrameJitterEntryData GetJitterData(DWORD frame_no);
     ThreadStartTimeJitterEntryData GetThreadStartJitterData(DWORD frame_no);
 
     DWORD IncrementCurrentFrame();

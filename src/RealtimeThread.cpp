@@ -41,6 +41,51 @@ void RealtimeThread::StartThread() {
     thread_dead_.Notify();
 }
 
+/*
+This function should never be called from within the context of this thread as
+it's unsafe, but instead be called from another thread context.
+*/
+void RealtimeThread::KillThread() {
+    // Notify the thread that it needs to shutdown. This is the first part of a
+    // two part proceess, the thread is only considered killed when
+    // thread_dead_ is set.
+    kill_thread_.Notify();
+
+    // Wait until thread_dead has been set before considering it killed.
+    thread_dead_.WaitFor(TIMEOUT_NEVER);
+}
+
+FrameTimingDataEntry RealtimeThread::GetTimingData(DWORD frame_no) {
+    if (frame_no >= MAX_FRAMES) throw std::runtime_error("invalid frame");
+
+    FrameTimingDataEntry entry;
+    entry.data_ = statistics_.Frame_data[frame_no];
+    entry.worst_frame_time_ = statistics_.worst_frame_time_;
+    entry.best_frame_time_ = statistics_.best_frame_time_;
+    return entry;
+}
+
+FrameJitterEntryData RealtimeThread::GetJitterData(DWORD frame_no) {
+    if (frame_no >= MAX_FRAMES) throw std::runtime_error("invalid frame");
+
+    FrameJitterEntryData entry;
+    entry.data_ = statistics_.jitter_data_[frame_no];
+    entry.worst_start_time_ = statistics_.worst_frame_jitter_;
+    entry.best_start_time_ = statistics_.best_frame_jitter_;
+    return entry;
+}
+
+ThreadStartTimeJitterEntryData RealtimeThread::GetThreadStartJitterData(
+    DWORD frame_no) {
+    if (frame_no >= MAX_FRAMES) throw std::runtime_error("invalid frame");
+
+    ThreadStartTimeJitterEntryData entry;
+    entry.data_ = statistics_.thread_start_jitter_data_[frame_no];
+    entry.worst_start_jitter_ = statistics_.worst_start_jitter_;
+    entry.best_start_jitter_ = statistics_.best_start_jitter_;
+    return entry;
+}
+
 void RealtimeThread::ZeroFrameTimes() {
     statistics_.worst_frame_time_ = 0.0;
     statistics_.best_frame_time_ = 99999.0;
