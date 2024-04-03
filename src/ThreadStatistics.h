@@ -107,7 +107,7 @@ struct ThreadStatistics {
     // ===========================
     // = Frame Timing Statistics =
     // ===========================
-    FrameTimingEntry Frame_data[MAX_FRAMES];
+    FrameTimingEntry frame_data_[MAX_FRAMES];
 
     // The worst frame time to date.
     double worst_frame_time_;
