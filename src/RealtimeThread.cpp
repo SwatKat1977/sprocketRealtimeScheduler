@@ -86,6 +86,18 @@ ThreadStartTimeJitterEntryData RealtimeThread::GetThreadStartJitterData(
     return entry;
 }
 
+DWORD RealtimeThread::IncrementCurrentFrame() {
+    current_frame_++;
+    frame_mask_ = frame_mask_ >> 1;
+
+    if (current_frame_ >= MAX_FRAMES) {
+        current_frame_ = 0;
+        frame_mask_ = 0x80000000;
+    }
+
+    return current_frame_;
+}
+
 void RealtimeThread::ZeroFrameTimes() {
     statistics_.worst_frame_time_ = 0.0;
     statistics_.best_frame_time_ = 99999.0;

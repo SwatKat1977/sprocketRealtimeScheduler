@@ -58,7 +58,7 @@ class RealtimeThread : public std::thread {
     ThreadStartTimeJitterEntryData GetThreadStartJitterData(DWORD frame_no);
 
     DWORD IncrementCurrentFrame();
-    DWORD CurrentFrame();
+    DWORD CurrentFrame() { return current_frame_; }
 
  protected:
     ThreadStatistics statistics_;
