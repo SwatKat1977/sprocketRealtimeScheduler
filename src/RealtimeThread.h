@@ -71,11 +71,11 @@ class RealtimeThread : public std::thread {
 
     ~RealtimeThread() = default;
 
-    double SnapshotTimestamp();
-    double CalculateFrameJitter(int frame);
+    double TimestampSnapshot();
     void CalculateFrameTimings(int current_frame, double frame_start,
                                double frame_end);
-    void CalculateTheadStartJitter(int current_frame);
+    double CalculateFrameJitter(int frame);
+    void CalculateTheadStartJitter(int frame);
 
     virtual double ThreadLoop() = 0;
 };
